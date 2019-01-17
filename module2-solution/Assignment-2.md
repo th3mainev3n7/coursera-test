@@ -12,9 +12,9 @@ Think of being in a store with a shopping list that allows you to "check off" th
 
 Your HTML page should display 2 lists, one titled "To Buy" and the other "Already Bought".
 
-The "To Buy" list should be pre-populated with a list of at least 5 items. (*Hint: Use an array of object literals, where each item will be similar to `{ name: "cookies", quantity: 10 }`*) Each shopping list item is to have a name and quantity. It should be displayed to the user in the format of `Buy item_quantity item_name`. For example, shopping list item `{ name: "cookies", quantity: 10 }` would be listed as `Buy 10 cookies`.
+The "To Buy" list should be pre-populated with a list of at least 5 items. (*Hint: Use an array of object literals, where each item will be similar to `{ name: "cookies", quantity: 10 }`*) Each shopping list item is to have a name and quantity. It should be displayed to the user in the format of `Buy item_quantity item_name`. For example, shopping list item `{ name: "cookies", quantity: 10 }` would be listed as `Buy 10 cookies`. ....done
 
-Next to each item in the list should be a button with the label "Bought". When the user clicks on the "Bought" button, its associated item should be removed from the "To Buy" list and appear in the "Already Bought" list.
+Next to each item in the list should be a button with the label "Bought". When the user clicks on the "Bought" button, its associated item should be removed from the "To Buy" list and appear in the "Already Bought" list. ...done kinda
 
 The "Already Bought" list should initially be empty and display a message "Nothing bought yet". Make sure the message appears *only* when the list is empty. Once something is "bought" and appears on this list, the format of each item in the list should be `Bought item_quantity item_name`. For example, the bought item of 10 cookies mentioned before would appear in this list as `Bought 10 cookies`.
 
@@ -42,11 +42,19 @@ Here is what you will need to do to complete the assignment:
 7. Create `app.js` in your project and declare an Angular module to match your `ng-app` declaration.
 8. Go back to `index.html` and declare 2 controllers using `controller as` syntax. One controller should be called `ToBuyController` and the other called `AlreadyBoughtController`. You are *required* to have 2 controllers for this assignment.
 9. You will obviously need to share data between these controllers. Go back to `app.js` and implement this data sharing using the *singleton* approach with the `.service` declaration. Call the service `ShoppingListCheckOffService`. Make sure to inject this service into both controllers so they can share data. Also, realize that your service will have to keep track of both 'to buy' and 'bought' items at the same time. (*While there is no one right way to accomplish this functionality, for this assignment, you are required to implement it as described.*)
+
+
+
+
   * (*Hint*) You can store 2 separate arrays in the service: one to hold "to buy" items and one to hold "bought" items. The reference to the "to buy" array should be placed/exposed onto the `ToBuyController` instance as some property. The reference to the "bought" items array should be placed/exposed onto the `AlreadyBoughtController` instance as some property.
   * (*Hint*) When the user clicks on the "Bought" button, simply pass the call from your (`ng-click`) controller-bound method to call the right method inside of your `ShoppingListCheckOffService` service, which removes that item from the "to buy" array and pushes it to the "bought" array.
   * (*Hint*) Your `ShoppingListCheckOffService` would also be the place where you would store the initial array of "to buy" items.
 10. To display and/or hide the messages when the list(s) are empty, use the `ng-if` directive.
 11. To loop over the items in either list use the `ng-repeat` directive.
+
+
+
+
 
 below step 12-14 are done
 12. Make sure all of your Javascript code is inside of an IIFE. (*If you don't know what that is or why we'd want to use it, brush up on it by looking through module 4 of [HTML, CSS, and Javascript for Web Developers](https://www.coursera.org/learn/html-css-javascript-for-web-developers/) course I teach.*)
