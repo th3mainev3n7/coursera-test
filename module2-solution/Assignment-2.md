@@ -47,6 +47,8 @@ Here is what you will need to do to complete the assignment:
   * (*Hint*) Your `ShoppingListCheckOffService` would also be the place where you would store the initial array of "to buy" items.
 10. To display and/or hide the messages when the list(s) are empty, use the `ng-if` directive.
 11. To loop over the items in either list use the `ng-repeat` directive.
+
+below step 12-14 are done
 12. Make sure all of your Javascript code is inside of an IIFE. (*If you don't know what that is or why we'd want to use it, brush up on it by looking through module 4 of [HTML, CSS, and Javascript for Web Developers](https://www.coursera.org/learn/html-css-javascript-for-web-developers/) course I teach.*)
 13. Make sure all of your dependency injections are protected from minification.
 14. After you are done and satisfied with your solution, don't forget to add/commit/push your code to your repository.
