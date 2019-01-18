@@ -10,7 +10,29 @@ ToBuyController.$inject = ['$scope', 'ShoppingListCheckOffService'];
 function ToBuyController($scope, ShoppingListCheckOffService) {
   var toBuy = this;
 
-  toBuy.items = [
+  toBuy.items = ShoppingListCheckOffService.toBuyList();
+
+  toBuy.boughtItem = function (itemIndex) {
+    try {
+      ShoppingListCheckOffService.boughtItem(itemIndex);
+    } catch (error) {
+      toBuy.errorMessage = error.message;
+    }
+  };
+}
+
+AlreadyBoughtController.$inject = ['$scope', 'ShoppingListCheckOffService'];
+function AlreadyBoughtController($scope, ShoppingListCheckOffService) {
+  var alreadyBought = this;
+
+  alreadyBought.items = ShoppingListCheckOffService.alreadyBoughtList();
+}
+
+function ShoppingListCheckOffService() {
+  var service = this;
+
+  var alreadyBought = [];
+  var toBuy = [
     {
       name: "cookies",
       quantity: "2"
@@ -33,43 +55,27 @@ function ToBuyController($scope, ShoppingListCheckOffService) {
     }
   ];
 
-  toBuy.boughtItem = function (itemIndex) {
-    ShoppingListCheckOffService.boughtItem(itemIndex); //toBuy.items[itemIndex]
-  };
-
-}
-
-
-AlreadyBoughtController.$inject = ['$scope', 'ShoppingListCheckOffService'];
-function AlreadyBoughtController($scope, ShoppingListCheckOffService) {
-  var alreadyBought = this;
-
-  alreadyBought = [""];
-
-
-
-}
-
-
-// Also, realize that your service will have to keep track of both 'to buy' and 'bought' items at the same time.
-function ShoppingListCheckOffService() {
-  var service = this;
-
-  var toBuy = [""];
-  var alreadyBought = [""];
-
   service.boughtItem = function (itemIndex) {
     // captures which item is getting removed
-    var moveItem = toBuy.splice(itemIndex, 1);
+    var moveItem = toBuy[itemIndex];
+    // removes it
+    toBuy.splice(itemIndex, 1);
     // adds it to the bought list at the end
     alreadyBought.push(moveItem);
+    if (toBuy.length == 0) {
+      // we are done. now throw the error message saying its empty
+      throw new Error("Everything is bought!");
+    }
   };
 
+  service.toBuyList = function () {
+    return toBuy;
+  };
 
+  service.alreadyBoughtList = function () {
+      return alreadyBought;
+  };
 
 }
-
-
-
 
 })();
