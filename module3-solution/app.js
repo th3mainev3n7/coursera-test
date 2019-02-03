@@ -45,8 +45,8 @@ function NarrowItDownController(MenuSearchService, $scope) {
 
   // remove an item
   controller.removeItem = function (itemIndex) {
-    controller.found.splice(itemIndex, 1);
-    // MenuSearchService.removeItem(itemIndex);
+    // controller.found.splice(itemIndex, 1);
+    MenuSearchService.removeItem(itemIndex);
   };
 
 }
@@ -57,13 +57,11 @@ function NarrowItDownController(MenuSearchService, $scope) {
 MenuSearchService.$inject = ['$http'];
 function MenuSearchService($http) {
   var service = this;
+  var foundItems = [];
 
-  // var foundItems = [];
-  //
-  // service.removeItem = function (itemIndex) {
-  //   foundItems.splice(itemIndex, 1);
-  //   console.log(foundItems);
-  // };
+  service.removeItem = function (itemIndex) {
+    foundItems.splice(itemIndex, 1);
+  };
 
   service.getMatchedMenuItems = function (searchTerm) {
     // call http service here
@@ -72,7 +70,7 @@ function MenuSearchService($http) {
           url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
         }).then(function (menuObject) { // then take object that is returned
 
-          var foundItems = [];
+          // var foundItems = [];
 
           // get it down to an array here
           var menu = menuObject.data.menu_items;
