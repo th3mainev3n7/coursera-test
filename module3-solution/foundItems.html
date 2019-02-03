@@ -1,0 +1,18 @@
+<ol>
+  <br>
+  <br>
+  <br>
+  <li ng-repeat="item in myController.found">
+
+    {{ item.name }} ,
+    {{ item.short_name }} ,
+    {{ item.description }}
+
+    <button ng-click="myController.onRemove({index: $index});">Don't want this one!</button>
+  </li>
+  
+  <div ng-if="myController.found.length == 0" class="emptyMessage">
+    Nothing found!!!
+  </div>
+
+</ol>
